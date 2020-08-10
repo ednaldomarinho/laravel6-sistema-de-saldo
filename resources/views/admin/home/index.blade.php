@@ -3,9 +3,9 @@
 @section('title', 'Home Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Welcome!!!</h1>
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    <h3><strong>{{$name}}</strong> , you are logged in!</h3>
 @stop
