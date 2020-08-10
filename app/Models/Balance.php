@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Balance extends Model
 {
@@ -10,6 +11,9 @@ class Balance extends Model
 
     public function deposit(float $value): Array
     {
+        DB::beginTransaction();
+        
+        
         $totalBefore = $this->amount ? $this->amount : 0;
         $this->amount += number_format($value, 2, '.','');
         $deposit = $this->save();
@@ -23,15 +27,18 @@ class Balance extends Model
         ]);
 
         if($deposit && $historic):
+            DB::commit();
             return[
                 'success' => true,
                 'message' => 'Depósito efetuado com sucesso!'
             ];
+        else:
+            DB::rollBack();
+            return[
+                'success' => false,
+                'message' => 'Falha na transação de depósito!'
+            ];
         endif;
-        return[
-            'success' => false,
-            'message' => 'Falha na transação de depósito!'
-        ];
 
     }
 }
