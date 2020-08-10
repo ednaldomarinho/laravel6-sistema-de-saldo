@@ -128,11 +128,25 @@ return [
     'menu' => [
         ['header' => 'main_navigation'],
         [
-            'text'        => 'home',
+            'text'        => 'Dashboard',
             'url'         => 'admin',
-            'icon'        => 'fas fa-home',
-            'label'       => 4,
-            'label_color' => 'success',
+            'icon'        => 'fas fa-tachometer-alt',
+        ],
+        [
+            'text'        => 'Financeiro',
+            'icon'         => 'fas fa-money-bill',
+            'submenu'     => [
+                [
+                    'text'        => 'Saldo',
+                    'url'         => 'admin/balance',
+                    'icon'        => 'fas fa-credit-card',
+                ], 
+                [
+                    'text'        => 'Histórico',
+                    'url'         => 'admin/historic',
+                    'icon'        => 'fas fa-history',
+                ],        
+            ],
         ],
     ],
 
