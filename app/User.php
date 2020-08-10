@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Models\Balance;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Historic;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -41,5 +41,10 @@ class User extends Authenticatable
     public function balance()
     {
         return $this->hasOne(Balance::class);
+    }
+
+    public function historics()
+    {
+        return $this->hasMany(Historic::class);
     }
 }
