@@ -24,7 +24,6 @@ class BalanceController extends Controller
     {
         
         $balance = auth()->user()->balance()->firstOrCreate([]);
-        $balance->deposit($request->value);
-        //return view('admin.balance.deposit');   
+        dd($balance->deposit($request->value));
     }
 }
