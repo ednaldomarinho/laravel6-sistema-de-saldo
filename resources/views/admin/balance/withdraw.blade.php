@@ -20,7 +20,7 @@
 
             @include('admin.includes.alerts')
 
-            <form action="{{route('withdrawn.store')}}" method="post">
+            <form action="{{route('withdraw.store')}}" method="post">
                 @csrf
                 <div class="form-group">
                     <input type="text" name="value" placeholder="Valor Saque" class="form-control">

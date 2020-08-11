@@ -9,9 +9,10 @@ class BalanceController extends Controller
 {
     public function index()
     {
+        $name = auth()->user()->name;
         $balance = auth()->user()->balance;
         $amount = $balance ? $balance->amount : 0;
-        return view('admin.balance.index',compact('amount'));   
+        return view('admin.balance.index',compact('amount', 'name'));   
     }
 
     public function deposit()
@@ -34,16 +35,15 @@ class BalanceController extends Controller
             ->with('error', $response['message']);
     }
 
-    public function withdrawn()
+    public function withdraw()
     {
-        return view('admin.balance.withdrawn');  
+        return view('admin.balance.withdraw');  
     }
 
-    public function withdrawnStore(MoneyValidationFormRequest $request)
+    public function withdrawStore(MoneyValidationFormRequest $request)
     {
-        dd($request->all());
         $balance = auth()->user()->balance()->firstOrCreate([]);
-        $response = $balance->deposit($request->value);
+        $response = $balance->withdraw($request->value);
         if($response['success']):
             return redirect()
                 ->route('admin.balance')
