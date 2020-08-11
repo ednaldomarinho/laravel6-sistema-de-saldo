@@ -11,12 +11,15 @@
 @stop
 
 @section('content')
-  <p>{{$name}}</p>
+  <h4>{{$name}}</h4>
   <div class="box">
     <div class="box-header">
       <a href="{{route('balance.deposit')}}" class="btn btn-primary"><i class="fas fa-cart-plus"></i>Depositar</a>
     @if($amount>0)
       <a href="{{route('balance.withdraw')}}" class="btn btn-danger"><i class="fas fa-cart-arrow-down"></i>Sacar</a>
+    @endif
+    @if($amount>0)
+      <a href="{{route('balance.transfer')}}" class="btn btn-warning"><i class="fas fa-exchange-alt"></i>Transferir</a>
     @endif
     </div>
     <div class="box-body">
