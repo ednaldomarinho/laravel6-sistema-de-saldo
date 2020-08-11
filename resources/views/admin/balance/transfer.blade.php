@@ -23,7 +23,7 @@
             <form action="{{route('confirm.transfer')}}" method="post">
                 @csrf
                 <div class="form-group">
-                    <input type="text" name="sender" placeholder="Informação do destino" class="form-control">
+                    <input type="text" name="sender" placeholder="Nome ou e-mail do destino" class="form-control">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Próxima Etapa</button>
