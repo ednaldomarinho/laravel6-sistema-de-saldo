@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoneyValidationFormRequest;
-use App\Models\Balance;
-use Illuminate\Http\Request;
 
 class BalanceController extends Controller
 {
@@ -25,6 +23,15 @@ class BalanceController extends Controller
     {
         
         $balance = auth()->user()->balance()->firstOrCreate([]);
-        dd($balance->deposit($request->value));
+        $response = $balance->deposit($request->value);
+        if($response['success']):
+            return redirect()
+                ->route('admin.balance')
+                ->with('success', $response['message']);
+        endif;
+        return redirect()
+            ->back()
+            ->with('error', $response['message']);
+
     }
 }
