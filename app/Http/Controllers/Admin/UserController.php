@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\UpdateProfileFormRequest;
 
 class UserController extends Controller
 {
@@ -13,7 +14,7 @@ class UserController extends Controller
         return view('site.profile.profile');
     }
 
-    public function profileUpdate(Request $request)
+    public function profileUpdate(UpdateProfileFormRequest $request)
     {
         $user = auth()->user();
         
