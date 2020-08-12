@@ -3,7 +3,7 @@
 @section('title', 'Histórico')
 
 @section('content_header')
-    <h1>Saldo</h1>
+    <h1>Histórico das movimentações</h1>
     <ol class="breadcrumb">
         <li><a href="">Dashboard</a></li>
         <li><a href="">Histórico</a></li>
