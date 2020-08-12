@@ -22,31 +22,26 @@
                     <th>#</th>
                     <th>Valor</th>
                     <th>Tipo</th>
+                    <th>Data</th>
                     <th>Destino</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($historics as $historic)                    
                     <tr>
-                        <td>{{$historic->id}}</td>
-                        <td>{{number_format($historic->amount, 2, ',', '')}}</td>
-                        @switch($historic->type)
-                            @case('O')
-                            <td>Saque</td>
-                            <td>--</td> 
-                                @break
-                            @case('I')
-                            <td>Depósito</td> 
-                            <td>--</td>  
-                                @break
-                            @case('T')
-                            <td>Transferência</td>  
-                            <td>{{$historic->user_id_transaction}}</td> 
-                                @break
-                            @default                                
-                        @endswitch
-                        
-                        
+                        <td>{{$historic->id}}</td> 
+                        <td>{{number_format($historic->amount,2, ',', '')}}</td> 
+                        <td>{{$historic->type($historic->type)}}</td> 
+                        <td>{{$historic->date}}</td>      
+                        <td>
+                            @if ($historic->user_id_transaction)
+                                {{$historic->userSender->name}}
+                            @else
+                                -
+                            @endif
+
+
+                        </td> 
                     </tr>  
                 @empty                  
                 @endforelse
