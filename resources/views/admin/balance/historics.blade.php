@@ -39,14 +39,13 @@
                             @else
                                 -
                             @endif
-
-
                         </td> 
                     </tr>  
                 @empty                  
                 @endforelse
             </tbody>
         </table>
+        {!!$historics->links()!!}
     </div>
     </div>
   </div>

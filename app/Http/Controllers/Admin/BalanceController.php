@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class BalanceController extends Controller
 {
+    private $totalPage = 5;
+    
     public function index()
     {
         $name = auth()->user()->name;
@@ -107,7 +109,7 @@ class BalanceController extends Controller
 
     public function historic()
     {
-        $historics = auth()->user()->historics()->with(['userSender'])->get();
+        $historics = auth()->user()->historics()->with(['userSender'])->paginate($this->totalPage);
         $name = auth()->user()->name;
         
         return view('admin.balance.historics', compact('historics', 'name'));
