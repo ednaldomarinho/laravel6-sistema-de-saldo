@@ -77,11 +77,11 @@ class BalanceController extends Controller
                    ->with ('error', 'Nome ou e-mail não encontrado!');            
         endif;
 
-        //if($sender->id === auth()->$user()->id):
-        //    return redirect()
-        //           ->back()
-        //           ->with ('error', 'O destino é o mesmo do usuário');            
-        //endif;
+        if ($sender->id === auth()->user()->id):
+        return redirect()
+                    ->back()
+                    ->with('error', 'Não pode transferir para você mesmo!');
+        endif;
       
         
 
