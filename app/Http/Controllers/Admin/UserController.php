@@ -14,6 +14,20 @@ class UserController extends Controller
 
     public function profileUpdate(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+
+        if($data['password']!=null):
+            $data['password'] = bcrypt($data['password']);
+        else:
+            unset($data['password']);
+        endif; 
+        $update = auth()->user()->update($data);
+
+        if($update):
+            return redirect()->route('profile')
+                             ->with('success', 'Atualização feita com sucesso!');
+        endif;
+        return redirect()->back()
+                         ->with('error', 'Falha ao atualizar perfil...');
     }
 }
