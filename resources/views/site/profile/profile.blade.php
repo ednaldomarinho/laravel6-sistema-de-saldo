@@ -4,8 +4,13 @@
 
 
 @section('content')
-    
-<h1>Meu Perfil</h1>
+<div class="form-group">
+    <h1>
+    @if (auth()->user()->image !=null)
+        <img src="{{ url('storage/users/'.auth()->user()->image)}}" alt="{{auth()->user()->name}}" style="max-width: 50px">
+    @endif
+    Meu Perfil</h1>
+</div>
 
 @if (session('success'))
     <div class="alert alert-success">
